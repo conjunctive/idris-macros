@@ -4,7 +4,7 @@
 
 ;; Author: Conjunctive <conjunctive@protonmail.com>
 ;; Keywords: idris
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; URL: https://github.com/conjunctive/idris-macros
 ;; Package-Requires: ((emacs "26") cl-lib idris-mode s)
 
@@ -124,7 +124,7 @@ Attempt to convert function declarations to :let commands."
   (interactive)
   (when (and (region-active-p) (not (region-noncontiguous-p)))
     (let ((str (buffer-substring-no-properties (region-beginning) (region-end))))
-      (idris-repl-send-string (if (string-match-p idris-fun-decl-rgx)
+      (idris-repl-send-string (if (string-match-p idris-fun-decl-rgx str)
                                   (idris-repl-parse-fn-decl str)
                                 (thread-last str
                                   (replace-regexp-in-string "^-- " "")
